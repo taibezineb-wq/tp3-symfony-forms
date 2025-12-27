@@ -1,22 +1,31 @@
 # TP 3 - Formulaires Symfony
 
 ## Informations
-- **Étudiant** :Zineb TAIBE 
-- **Date** : 27/12/25
+- **Étudiant** : Zineb
+- **Date** : 27/12/2024
 - **Formation** : EHEI 2025/2026
 
 ## Réalisation
 
-Ce projet implémente un formulaire Symfony pour commander des casques audio premium selon les consignes du TP.
+Ce projet implémente exactement ce qui est demandé dans le TP 3 : transformer le code HTML donné en formulaire Symfony.
 
 ### Fonctionnalités implémentées
-1. ✅ **Entité Product** avec valeurs par défaut
-2. ✅ **Formulaire Symfony** avec validation (Range constraint corrigé)
-3. ✅ **Champ Quantity** : validation entre 1 et 10
-4. ✅ **Champ Select Color** : choix entre 3 couleurs
-5. ✅ **Controller** avec deux routes (/, /cart)
-6. ✅ **Templates Twig** avec Bootstrap 5.3 (via CDN)
-7. ✅ **Page de confirmation** avec récapitulatif
-8. ✅ **Design responsive** adapté mobile/desktop
+1. ✅ Page produit conforme au HTML fourni
+2. ✅ Formulaire Symfony avec Form Type
+3. ✅ Validation des champs (quantité 1-10)
+4. ✅ Bootstrap 5.3 intégré via CDN
+5. ✅ Page de confirmation d'achat
+6. ✅ Code propre et structuré
 
-### Structure du projet
+### Structure
+- `Product` : Entité avec valeurs par défaut
+- `ProductOrderType` : Formulaire avec validation
+- `ProductController` : Logique de traitement
+- Templates Twig : Affichage responsive
+
+## Conformité au TP
+- ✅ Transformation HTML → Symfony
+- ✅ Utilisation de Form Types
+- ✅ Intégration Bootstrap via CDN
+- ✅ Formulaire avec validation
+- ✅ Deux pages (produit + confirmation)

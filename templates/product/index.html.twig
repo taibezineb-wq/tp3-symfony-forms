@@ -4,123 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ product.name }} - EHEI TP3</title>
-    
-    <!-- Bootstrap 5.3 CDN (EXACTEMENT comme dans l'énoncé) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <style>
-        body {
-            background-color: #f8f9fa;
-            padding-top: 20px;
-        }
-        .product-container {
-            margin-top: 30px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            background: white;
-        }
-        .product-image {
-            width: 100%;
-            height: 450px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        .product-info {
-            padding: 25px;
-        }
-        .price-tag {
-            color: #dc3545;
-            font-weight: bold;
-            font-size: 1.8rem;
-        }
-        .specs-list li {
-            padding: 5px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .form-control-small {
-            max-width: 100px;
-        }
-        .form-select-medium {
-            max-width: 200px;
-        }
-    </style>
 </head>
 <body>
     <div class="container my-5">
         <div class="row">
-            <!-- Colonne Image -->
             <div class="col-md-6">
-                <img src="{{ product.image }}" 
-                     class="product-image" 
-                     alt="{{ product.name }}">
+                <img src="{{ product.image }}" class="img-fluid rounded" alt="Product">
             </div>
             
-            <!-- Colonne Informations -->
             <div class="col-md-6">
                 <h1 class="mb-3">{{ product.name }}</h1>
-                <p class="price-tag mb-3">${{ product.price|number_format(2, '.', ',') }}</p>
+                <p class="text-muted fs-4 mb-3">${{ product.price|number_format(2, '.', ',') }}</p>
                 
-                <p class="text-muted mb-4">
-                    {{ product.description }}
-                </p>
+                <p class="mb-4">{{ product.description }}</p>
                 
-                <div class="mb-4">
-                    <h5>Specifications:</h5>
-                    <ul class="list-unstyled specs-list">
-                        <li><strong>Brand:</strong> {{ product.brand }}</li>
-                        <li><strong>Color:</strong> {{ product.color }}</li>
-                        <li><strong>Connectivity:</strong> {{ product.connectivity }}</li>
-                        <li><strong>Battery Life:</strong> {{ product.batteryLife }}</li>
-                    </ul>
-                </div>
+                <ul class="list-unstyled mb-4">
+                    <li><strong>Brand:</strong> {{ product.brand }}</li>
+                    <li><strong>Color:</strong> {{ product.color }}</li>
+                    <li><strong>Connectivity:</strong> {{ product.connectivity }}</li>
+                    <li><strong>Battery Life:</strong> {{ product.batteryLife }}</li>
+                </ul>
                 
-                <hr class="my-4">
-                
-                <!-- Formulaire Symfony -->
                 {{ form_start(form) }}
                 
-                <div class="mb-4">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                {{ form_label(form.quantity, 'Quantity', {'label_attr': {'class': 'form-label fw-bold'}}) }}
-                                {{ form_widget(form.quantity, {'attr': {'class': 'form-control form-control-small'}}) }}
-                                <div class="form-text">Select between 1 and 10 items</div>
-                                {% if form.quantity.vars.errors is not empty %}
-                                    <div class="alert alert-danger mt-2">
-                                        {{ form_errors(form.quantity) }}
-                                    </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                {{ form_label(form.selectedColor, 'Select Color', {'label_attr': {'class': 'form-label fw-bold'}}) }}
-                                {{ form_widget(form.selectedColor, {'attr': {'class': 'form-select form-select-medium'}}) }}
-                                {% if form.selectedColor.vars.errors is not empty %}
-                                    <div class="alert alert-danger mt-2">
-                                        {{ form_errors(form.selectedColor) }}
-                                    </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
+                <div class="mb-3">
+                    {{ form_label(form.quantity, 'Quantity', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.quantity, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.quantity) }}
                 </div>
                 
-                <div class="d-grid gap-2 d-md-block">
-                    <button type="submit" class="btn btn-primary btn-lg">
-                        Add to Cart
-                    </button>
+                <div class="mb-3">
+                    {{ form_label(form.selectedColor, 'Select Color', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.selectedColor, {'attr': {'class': 'form-select'}}) }}
+                    {{ form_errors(form.selectedColor) }}
                 </div>
+                
+                <button type="submit" class="btn btn-primary btn-lg">Add to Cart</button>
                 
                 {{ form_end(form) }}
             </div>
         </div>
     </div>
-    
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

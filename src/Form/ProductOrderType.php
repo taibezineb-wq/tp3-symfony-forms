@@ -43,7 +43,7 @@ class ProductOrderType extends AbstractType
                     'class' => 'form-select',
                     'style' => 'max-width: 200px;',
                 ],
-                'data' => 'black', // Valeur par défaut
+                'data' => 'black',
             ]);
     }
 

@@ -9,11 +9,9 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ProductController extends AbstractController
 {
-    // Page produit (GET)
     #[Route('/', name: 'app_product')]
     public function index(): Response
     {
-        // Données exactement comme dans l'énoncé HTML
         $product = [
             'name' => 'Premium Wireless Headphones',
             'price' => 129.99,
@@ -33,11 +31,11 @@ class ProductController extends AbstractController
         ]);
     }
     
-    // Traitement formulaire (POST) - action="/cart"
+   
     #[Route('/cart', name: 'app_cart', methods: ['POST'])]
     public function cart(Request $request): Response
     {
-        // Mêmes données produit
+        
         $product = [
             'name' => 'Premium Wireless Headphones',
             'price' => 129.99,
@@ -69,7 +67,7 @@ class ProductController extends AbstractController
             ]);
         }
         
-        // Si erreur, retour à la page produit
+       
         return $this->redirectToRoute('app_product');
     }
 }

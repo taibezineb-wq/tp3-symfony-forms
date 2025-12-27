@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\Product;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Validator\Constraints\Range;
+
+class ProductOrderType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            ->add('quantity', IntegerType::class, [
+                'label' => 'Quantity',
+                'attr' => [
+                    'class' => 'form-control',
+                    'style' => 'max-width: 100px;',
+                    'min' => 1,
+                    'max' => 10,
+                ],
+                'data' => 1,
+                'constraints' => [
+                    new Range([
+                        'min' => 1,
+                        'max' => 10,
+                        'notInRangeMessage' => 'You must order between {{ min }} and {{ max }} items.',
+                    ]),
+                ],
+            ])
+            ->add('selectedColor', ChoiceType::class, [
+                'label' => 'Select Color',
+                'choices' => [
+                    'Matte Black' => 'black',
+                    'Pearl White' => 'white',
+                    'Silver' => 'silver',
+                ],
+                'attr' => [
+                    'class' => 'form-select',
+                    'style' => 'max-width: 200px;',
+                ],
+                'data' => 'black', // Valeur par défaut
+            ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Product::class,
+        ]);
+    }
+}
